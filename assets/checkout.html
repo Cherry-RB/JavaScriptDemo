@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>確認購物車</title>
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/cart.css" rel="stylesheet">
+    <script src="js/cookie.js"></script>
+</head>
+
+<body>
+    <main>
+        <section id="example-info" class="center">
+            <h1 id="example-title" class="section-title">確認購物車</h1>
+        </section>
+        <div id="shop-container" status="checkout">
+            <button id="cart-toggle">購物車</button>
+            <div id="products-container"></div>
+            <div id="cart-container">
+                <div id="added-products-container">
+                    <div class="added-product">
+                        <span class="added-product-id">id</span>
+                        <span class="added-product-title">商品名稱</span>
+                        <span class="added-product-price">價格/本</span>
+                        <span class="added-product-amount">數量</span>
+                    </div>
+                </div>
+                <div>購物車內有 <span id="cart-amount">0</span> 項商品</div>
+                <div>總計 <span id="cart-subtotal">0</span> 元</div>
+            </div>
+            <button id="checkout-button">送出</button>
+        </div>
+    </main>
+    <script src="js/cookie.js"></script>
+    <script src="js/shop.js"></script>
+
+    <script>
+        /*
+            7.
+            用 getCookie(name) 來讀取儲存購物車中商品的 cookie,
+            此時讀取的 cookie 為字串, 我們可以用 JSON.parse( getCookie(name) ) 將其轉換回陣列,
+            並存到 productsInCookie,
+            cookie 名稱儲存在 shop.cookieName
+        */
+        let productsInCookie = JSON.parse(getCookie(shop.cookieName));
+        shop.init(productsInCookie);
+    </script>
+
+</body>
+
+</html>

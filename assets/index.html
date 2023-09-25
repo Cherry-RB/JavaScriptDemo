@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>商城範例：作業繳交</title>
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/cart.css" rel="stylesheet">
+    <script src="js/cookie.js"></script>
+</head>
+
+<body>
+    <main>
+        <div id="wrap">
+            <div id="explain">
+                <p>商城網站：</p>
+                <p>額外新增了以下功能：</p>
+                <p>一.延伸作業1：商品數量<br>
+                    在每個商品的 HTML 模板裡面加入一個 input 元素, 讓使用者可以在 input 元素中輸入要加入多少個商品到購物車中</p>
+                <p>二.延伸作業2：搜尋功能<br>
+                    在頁面中加入一個 input 跟一個「搜尋」按鈕 (位置隨意), 當在 input 中輸入關鍵字後按下「搜尋」時, 隱藏商品名稱不包含關鍵字的商品</p>
+                <p>三.額外挑戰：可移除購物車項目<br>
+                    在購物車與結帳頁面中，在每個項目增加「移出購物車」的按鈕，點擊即可移出，且會同步更新資料與cookie</p>
+                <p>四.額外挑戰：商品數量的計算<br>
+                    如果新增一個購物車內已有的書本，則相加原有數量與新增數量，購物車內將不會重複顯示同個id的商品，在資料儲存與cookie中也以同樣方式處理</p>
+                <p>五.額外挑戰：其他嘗試功能等等等<br>
+                    本黃色說明視窗、整體與個別UI版面的排版與設計、當使用者沒有輸入關鍵字就點擊會跳出alert、增加購物車與結帳頁面中顯示的內容並即時更新(id、書名、價位、個別項目購買量、移出購物車按鈕、購物車內總數量、總價)、購物車內的排序處理(在重新整理時可看見效果)...etc
+                </p>
+            </div>
+            <button type="button" id="explainCheck">確定</button>
+        </div>
+
+
+        <section id="example-info" class="center">
+            <h1 id="example-title" class="section-title">商城範例：作業繳交</h1>
+            <p id="example-filename">ch05_ex08_cart-4.html</p>
+        </section>
+
+        <div id="shop-container">
+            <button id="cart-toggle">購物車</button>
+            <div class="searchBlock">
+                <input type="search" placeholder="關鍵字" id="searchInput">
+                <button type="button" id="searchButton">搜尋</button>
+            </div>
+            <div id="products-container"></div>
+            <div id="cart-container">
+                <div id="added-products-container">
+                    <div class="added-product">
+                        <span class="added-product-id">id</span>
+                        <span class="added-product-title">商品名稱</span>
+                        <span class="added-product-price">價格/本</span>
+                        <span class="added-product-amount">數量</span>
+                    </div>
+                </div>
+                <div>購物車內有 <span id="cart-amount">0</span> 項商品</div>
+                <div>總計 <span id="cart-subtotal">0</span> 元</div>
+            </div>
+            <a class="btn" href="checkout.html">確認商品並結帳</a>
+        </div>
+    </main>
+    <script src="js/cookie.js"></script>
+    <script src="js/shop.js"></script>
+
+    <script>
+        /*
+            7.
+            用 getCookie(name) 來讀取儲存購物車中商品的 cookie,
+            此時讀取的 cookie 為字串, 我們可以用 JSON.parse( getCookie(name) ) 將其轉換回陣列,
+            並存到 productsInCookie,
+            cookie 名稱儲存在 shop.cookieName
+        */
+        let productsInCookie = JSON.parse(getCookie(shop.cookieName));
+        shop.init(productsInCookie);
+    </script>
+</body>
+
+</html>
